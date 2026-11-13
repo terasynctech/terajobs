@@ -125,5 +125,14 @@ const [authLoading, setAuthLoading] = useState(true);
 
     <footer><a className="brand footer-brand" href="#"><span className="brand-mark">T</span><span>Tera<span className="brand-accent">Jobs</span><small>BY TERASYNCTECH</small></span></a><span>© {new Date().getFullYear()} TeraSyncTech. All rights reserved.</span><span>Connecting talent with opportunity.</span></footer>
     {!isSupabaseConfigured && <div className="setup-pill">Supabase not connected · Setup mode</div>}
+    {authOpen && (
+  <Auth
+    onClose={() => setAuthOpen(false)}
+    onAuthSuccess={(loggedInUser) => {
+      setUser(loggedInUser);
+      setAuthOpen(false);
+    }}
+  />
+)}
   </div>;
 }
