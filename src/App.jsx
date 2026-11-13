@@ -75,7 +75,12 @@ const [authLoading, setAuthLoading] = useState(true);
         <a href="#jobs" onClick={() => setMenuOpen(false)}>Find Jobs</a>
         <a href="#how" onClick={() => setMenuOpen(false)}>How it works</a>
         <a href="#employers" onClick={() => setMenuOpen(false)}>For Employers</a>
-        <a className="login-link" href="#candidate">Login / Register</a>
+        <button
+  className="login-link"
+  onClick={() => setAuthOpen(true)}
+>
+  Login / Register
+</button>
         <a className="post-job" href="#employers">Post a Job <ArrowRight size={16}/></a>
       </nav>
     </header>
