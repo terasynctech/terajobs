@@ -12,17 +12,20 @@ export default function Auth({ onAuthSuccess, onClose }) {
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
 
-  async function syncProfile(user) {
-    const metadata = user.user_metadata || {};
-    const { error } = await supabase.from("profiles").upsert({
-      id: user.id,
+async function syncProfile(user) {
+  const metadata = user.user_metadata || {};
+
+  const { error } = await supabase
+    .from("profiles")
+    .update({
       email: user.email,
       full_name: metadata.full_name || name,
       phone: metadata.phone || phone
-    }, { onConflict: "id" });
+    })
+    .eq("id", user.id);
 
-    if (error) throw error;
-  }
+  if (error) throw error;
+}
 
   async function handleSubmit(e) {
     e.preventDefault();
