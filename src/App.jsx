@@ -15,6 +15,10 @@ export default function App() {
   const [city, setCity] = useState("");
   const [jobs, setJobs] = useState(sampleJobs);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [authOpen, setAuthOpen] = useState(false);
+const [user, setUser] = useState(null);
+const [profile, setProfile] = useState(null);
+const [authLoading, setAuthLoading] = useState(true);
   const [notice, setNotice] = useState("");
 
   const filteredJobs = useMemo(() => jobs.filter(job =>
