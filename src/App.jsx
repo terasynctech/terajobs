@@ -19,6 +19,24 @@ export default function App() {
 const [user, setUser] = useState(null);
 const [profile, setProfile] = useState(null);
 const [authLoading, setAuthLoading] = useState(true);
+  useEffect(() => {
+  if (!supabase) {
+    setAuthLoading(false);
+    return;
+  }
+
+  supabase.auth.getSession().then(({ data: { session } }) => {
+    setUser(session?.user ?? null);
+    setAuthLoading(false);
+  });
+
+  const { data: { subscription } } =
+    supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null);
+    });
+
+  return () => subscription.unsubscribe();
+}, []);
   const [notice, setNotice] = useState("");
 
   const filteredJobs = useMemo(() => jobs.filter(job =>
