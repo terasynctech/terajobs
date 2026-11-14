@@ -88,19 +88,25 @@ const [authLoading, setAuthLoading] = useState(true);
         <a href="#how" onClick={() => setMenuOpen(false)}>How it works</a>
         <a href="#employers" onClick={() => setMenuOpen(false)}>For Employers</a>
 
-        {user ? (
-         <button
-  className="login-link"
-  onClick={() => setDashboardOpen(true)}
->
-  Welcome, {user.user_metadata?.full_name || user.email}
-</button>
-            className="login-link"
-            onClick={() => setAuthOpen(true)}
-          >
-            Login / Register
-          </button>
-        )}
+
+{user ? (
+  <button
+    type="button"
+    className="login-link"
+    onClick={() => setDashboardOpen(true)}
+  >
+    Welcome, {user.user_metadata?.full_name || user.email}
+  </button>
+) : (
+  <button
+    type="button"
+    className="login-link"
+    onClick={() => setAuthOpen(true)}
+  >
+    Login / Register
+  </button>
+)}
+
 
         <a className="post-job" href="#employers">Post a Job <ArrowRight size={16}/></a>
       </nav>
