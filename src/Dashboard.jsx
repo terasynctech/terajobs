@@ -243,115 +243,105 @@ async function uploadResume(event) {
               ← Back to Dashboard
             </button>
 
-            <h2 style={styles.heading}>My Profile</h2>
-            <p style={styles.welcome}>
-              Update your personal and professional details.
-            </p>
+           
+{activePage === "profile" ? (
+  <>
+    <h2 style={styles.heading}>My Profile</h2>
+    <p style={styles.welcome}>
+      Update your personal and professional details.
+    </p>
 
-            {loading && <p>Loading...</p>}
+    {loading && <p>Loading...</p>}
 
-            <form onSubmit={saveProfile}>
-              <label style={labelStyle}>
-                Full Name
-                <input
-                  style={fieldStyle}
-                  name="full_name"
-                  value={profile.full_name}
-                  onChange={handleChange}
-                  required
-                />
-              </label>
+    <form onSubmit={saveProfile}>
+      <label style={labelStyle}>
+        Full Name
+        <input style={fieldStyle} name="full_name" value={profile.full_name} onChange={handleChange} required />
+      </label>
 
-              <label style={labelStyle}>
-                Mobile Number
-                <input
-                  style={fieldStyle}
-                  name="phone"
-                  value={profile.phone}
-                  onChange={handleChange}
-                />
-              </label>
+      <label style={labelStyle}>
+        Mobile Number
+        <input style={fieldStyle} name="phone" value={profile.phone} onChange={handleChange} />
+      </label>
 
-              <label style={labelStyle}>
-                City
-                <input
-                  style={fieldStyle}
-                  name="city"
-                  value={profile.city}
-                  onChange={handleChange}
-                />
-              </label>
+      <label style={labelStyle}>
+        City
+        <input style={fieldStyle} name="city" value={profile.city} onChange={handleChange} />
+      </label>
 
-              <label style={labelStyle}>
-                State
-                <input
-                  style={fieldStyle}
-                  name="state"
-                  value={profile.state}
-                  onChange={handleChange}
-                />
-              </label>
+      <label style={labelStyle}>
+        State
+        <input style={fieldStyle} name="state" value={profile.state} onChange={handleChange} />
+      </label>
 
-              <label style={labelStyle}>
-                Professional Headline
-                <input
-                  style={fieldStyle}
-                  name="headline"
-                  placeholder="Example: Full Stack Developer"
-                  value={profile.headline}
-                  onChange={handleChange}
-                />
-              </label>
+      <label style={labelStyle}>
+        Professional Headline
+        <input style={fieldStyle} name="headline" placeholder="Example: Full Stack Developer" value={profile.headline} onChange={handleChange} />
+      </label>
 
-              <label style={labelStyle}>
-                Education
-                <input
-                  style={fieldStyle}
-                  name="education"
-                  placeholder="Your qualification"
-                  value={profile.education}
-                  onChange={handleChange}
-                />
-              </label>
+      <label style={labelStyle}>
+        Education
+        <input style={fieldStyle} name="education" placeholder="Your qualification" value={profile.education} onChange={handleChange} />
+      </label>
 
-              <label style={labelStyle}>
-                Work Experience (Years)
-                <input
-                  style={fieldStyle}
-                  type="number"
-                  min="0"
-                  step="0.5"
-                  name="experience_years"
-                  value={profile.experience_years}
-                  onChange={handleChange}
-                />
-              </label>
+      <label style={labelStyle}>
+        Work Experience (Years)
+        <input style={fieldStyle} type="number" min="0" step="0.5" name="experience_years" value={profile.experience_years} onChange={handleChange} />
+      </label>
 
-              <label style={labelStyle}>
-                Skills
-                <textarea
-                  style={{ ...fieldStyle, minHeight: 85 }}
-                  name="skills"
-                  placeholder="Example: React, JavaScript, HTML, CSS"
-                  value={profile.skills}
-                  onChange={handleChange}
-                />
-              </label>
+      <label style={labelStyle}>
+        Skills
+        <textarea
+          style={{ ...fieldStyle, minHeight: 85 }}
+          name="skills"
+          placeholder="Example: React, JavaScript, HTML, CSS"
+          value={profile.skills}
+          onChange={handleChange}
+        />
+      </label>
 
-              {message && (
-                <p style={{ color: message.includes("successfully") ? "green" : "red" }}>
-                  {message}
-                </p>
-              )}
+      {message && (
+        <p style={{ color: message.includes("successfully") ? "green" : "red" }}>
+          {message}
+        </p>
+      )}
 
-              <button
-                type="submit"
-                style={styles.logout}
-                disabled={loading}
-              >
-                {loading ? "Please wait..." : "Save Profile"}
-              </button>
-            </form>
+      <button type="submit" style={styles.logout} disabled={loading}>
+        {loading ? "Please wait..." : "Save Profile"}
+      </button>
+    </form>
+  </>
+) : (
+  <>
+    <h2 style={styles.heading}>Upload Your Resume</h2>
+
+    <p style={styles.welcome}>
+      Upload your latest resume to apply for jobs.
+    </p>
+
+    <div style={{ padding: 20, background: "#f1f5f9", borderRadius: 10 }}>
+      <p><strong>Accepted formats:</strong> PDF, DOC, DOCX</p>
+      <p><strong>Maximum file size:</strong> 5 MB</p>
+
+      <input
+        type="file"
+        accept=".pdf,.doc,.docx"
+        onChange={uploadResume}
+        disabled={loading}
+        style={{ width: "100%", marginTop: 15 }}
+      />
+    </div>
+
+    {loading && <p>Uploading resume...</p>}
+
+    {message && (
+      <p style={{ color: message.includes("successfully") ? "green" : "red" }}>
+        {message}
+      </p>
+    )}
+  </>
+)}
+
           </>
         )}
       </div>
