@@ -80,7 +80,6 @@ const [authLoading, setAuthLoading] = useState(true);
             Login / Register
           </button>
         )}
-  <button
     className="login-link"
     onClick={() => setAuthOpen(true)}
   >
