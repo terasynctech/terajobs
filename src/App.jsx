@@ -68,20 +68,20 @@ const [authLoading, setAuthLoading] = useState(true);
   }
 
   return <div className="app-shell">
-    <header className="topbar">
-      <a className="brand" href="#"><span className="brand-mark">T</span><span>Tera<span className="brand-accent">Jobs</span><small>BY TERASYNCTECH</small></span></a>
-      <button className="mobile-menu" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">{menuOpen ? <X/> : <Menu/>}</button>
-      <nav className={menuOpen ? "nav-links open" : "nav-links"}>
-        <a href="#jobs" onClick={() => setMenuOpen(false)}>Find Jobs</a>
-        <a href="#how" onClick={() => setMenuOpen(false)}>How it works</a>
-        <a href="#employers" onClick={() => setMenuOpen(false)}>For Employers</a>
-       
 
-{user ? (
-  <span className="login-link">
-    Welcome, {user.user_metadata?.full_name || user.email}
-  </span>
-) : (
+        {user ? (
+          <span className="login-link">
+            Welcome, {user.user_metadata?.full_name || user.email}
+          </span>
+        ) : (
+          <button
+            className="login-link"
+            onClick={() => setAuthOpen(true)}
+          >
+            Login / Register
+          </button>
+        )}
+
   <button
     className="login-link"
     onClick={() => setAuthOpen(true)}
