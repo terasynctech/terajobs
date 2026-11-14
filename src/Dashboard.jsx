@@ -94,6 +94,62 @@ export default function Dashboard({ user, onClose }) {
     setLoading(false);
   }
 
+async function uploadResume(event) {
+  const file = event.target.files?.[0];
+
+  if (!file) return;
+
+  const allowedTypes = [
+    "application/pdf",
+    "application/msword",
+    "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+  ];
+
+  if (!allowedTypes.includes(file.type)) {
+    setMessage("Please upload only PDF, DOC or DOCX files.");
+    event.target.value = "";
+    return;
+  }
+
+  if (file.size > 5 * 1024 * 1024) {
+    setMessage("File size must not exceed 5 MB.");
+    event.target.value = "";
+    return;
+  }
+
+  setLoading(true);
+  setMessage("");
+
+  const filePath = `${user.id}/${Date.now()}-${file.name}`;
+
+  const { error: uploadError } = await supabase.storage
+    .from("candidate-resumes")
+    .upload(filePath, file, {
+      contentType: file.type,
+      upsert: false
+    });
+
+  if (uploadError) {
+    setMessage("Upload failed: " + uploadError.message);
+    setLoading(false);
+    return;
+  }
+
+  const { error: updateError } = await supabase
+    .from("profiles")
+    .update({ resume_path: filePath })
+    .eq("id", user.id);
+
+  if (updateError) {
+    setMessage("Resume uploaded, but profile update failed: " + updateError.message);
+  } else {
+    setMessage("Resume uploaded successfully!");
+  }
+
+  setLoading(false);
+  event.target.value = "";
+}
+
   async function handleLogout() {
     const { error } = await supabase.auth.signOut();
 
