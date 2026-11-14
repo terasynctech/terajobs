@@ -89,6 +89,9 @@ const [authLoading, setAuthLoading] = useState(true);
         <a href="#employers" onClick={() => setMenuOpen(false)}>For Employers</a>
 
 
+<a href="#how" onClick={() => setMenuOpen(false)}>How it works</a>
+<a href="#employers" onClick={() => setMenuOpen(false)}>For Employers</a>
+
 {user ? (
   <button
     type="button"
@@ -107,10 +110,10 @@ const [authLoading, setAuthLoading] = useState(true);
   </button>
 )}
 
+<a className="post-job" href="#employers">
+  Post a Job <ArrowRight size={16} />
+</a>
 
-        <a className="post-job" href="#employers">Post a Job <ArrowRight size={16}/></a>
-      </nav>
-    </header>
 
 
     <main>
