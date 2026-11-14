@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import Auth from "./Auth";
+import Dashboard from "./Dashboard";
 import { Search, MapPin, BriefcaseBusiness, Users, Building2, ArrowRight, UploadCloud, ShieldCheck, Menu, X } from "lucide-react";
 import { supabase, isSupabaseConfigured } from "./supabase";
 
