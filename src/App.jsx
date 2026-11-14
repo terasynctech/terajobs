@@ -85,11 +85,12 @@ const [authLoading, setAuthLoading] = useState(true);
         <a href="#employers" onClick={() => setMenuOpen(false)}>For Employers</a>
 
         {user ? (
-          <span className="login-link">
-            Welcome, {user.user_metadata?.full_name || user.email}
-          </span>
-        ) : (
-          <button
+         <button
+  className="login-link"
+  onClick={() => setDashboardOpen(true)}
+>
+  Welcome, {user.user_metadata?.full_name || user.email}
+</button>
             className="login-link"
             onClick={() => setAuthOpen(true)}
           >
