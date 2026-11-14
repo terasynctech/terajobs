@@ -69,19 +69,22 @@ const [authLoading, setAuthLoading] = useState(true);
     setNotice(`${data?.length || 0} live vacancies found.`);
   }
 
-  return <div className="app-shell">
-    <header className="topbar">
-      <a className="brand" href="#">
-        <span className="brand-mark">T</span>
-        <span>Tera<span className="brand-accent">Jobs</span><small>BY TERASYNCTECH</small></span>
-      </a>
+{user ? (
+  <button
+    className="login-link"
+    onClick={() => setDashboardOpen(true)}
+  >
+    Welcome, {user.user_metadata?.full_name || user.email}
+  </button>
+) : (
+  <button
+    className="login-link"
+    onClick={() => setAuthOpen(true)}
+  >
+    Login / Register
+  </button>
+)}
 
-      <button className="mobile-menu" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">
-        {menuOpen ? <X/> : <Menu/>}
-      </button>
-
-      <nav className={menuOpen ? "nav-links open" : "nav-links"}>
-        <a href="#jobs" onClick={() => setMenuOpen(false)}>Find Jobs</a>
         <a href="#how" onClick={() => setMenuOpen(false)}>How it works</a>
         <a href="#employers" onClick={() => setMenuOpen(false)}>For Employers</a>
 
