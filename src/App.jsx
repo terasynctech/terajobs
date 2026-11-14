@@ -68,7 +68,6 @@ const [authLoading, setAuthLoading] = useState(true);
   }
 
   return <div className="app-shell">
-
         {user ? (
           <span className="login-link">
             Welcome, {user.user_metadata?.full_name || user.email}
@@ -81,7 +80,6 @@ const [authLoading, setAuthLoading] = useState(true);
             Login / Register
           </button>
         )}
-
   <button
     className="login-link"
     onClick={() => setAuthOpen(true)}
