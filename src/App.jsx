@@ -75,7 +75,7 @@ const [authLoading, setAuthLoading] = useState(true);
         <a href="#jobs" onClick={() => setMenuOpen(false)}>Find Jobs</a>
         <a href="#how" onClick={() => setMenuOpen(false)}>How it works</a>
         <a href="#employers" onClick={() => setMenuOpen(false)}>For Employers</a>
-        <button
+       
 {user ? (
   <span className="login-link">
     Welcome, {user.user_metadata?.full_name || user.email}
