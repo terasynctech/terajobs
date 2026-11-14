@@ -143,73 +143,67 @@ export default function App() {
 
   return (
     <div className="app-shell">
-      <header className="topbar">
-        <a className="brand" href="#">
-          <span className="brand-mark">T</span>
-          <span>
-            Tera<span className="brand-accent">Jobs</span>
-            <small>BY TERASYNCTECH</small>
-          </span>
-      
-<nav className={menuOpen ? "nav-links open" : "nav-links"}>
-  <a href="#jobs" onClick={() => setMenuOpen(false)}>
-    Find Jobs
+     
+<header className="topbar">
+  <a className="brand" href="#">
+    <span className="brand-mark">T</span>
+    <span>
+      Tera<span className="brand-accent">Jobs</span>
+      <small>BY TERASYNCTECH</small>
+    </span>
   </a>
 
-  <a href="#how" onClick={() => setMenuOpen(false)}>
-    How it works
-  </a>
+  <button
+    className="mobile-menu"
+    onClick={() => setMenuOpen(!menuOpen)}
+    aria-label="Toggle menu"
+  >
+    {menuOpen ? <X /> : <Menu />}
+  </button>
 
-  <a href="#employers" onClick={() => setMenuOpen(false)}>
-    For Employers
-  </a>
+  <nav className={menuOpen ? "nav-links open" : "nav-links"}>
+    <a href="#jobs" onClick={() => setMenuOpen(false)}>
+      Find Jobs
+    </a>
 
-  {user ? (
-    <button
-      type="button"
-      className="login-link"
-      onClick={() => {
-        setMenuOpen(false);
-        setDashboardOpen(true);
-      }}
-    >
-      Welcome, {user.user_metadata?.full_name || user.email}
-    </button>
-  ) : (
-    <button
-      type="button"
-      className="login-link"
-      onClick={() => setAuthOpen(true)}
-    >
-      Login / Register
-    </button>
-  )}
+    <a href="#how" onClick={() => setMenuOpen(false)}>
+      How it works
+    </a>
 
-  <a className="post-job" href="#employers">
-    Post a Job <ArrowRight size={16} />
-  </a>
-</nav>
+    <a href="#employers" onClick={() => setMenuOpen(false)}>
+      For Employers
+    </a>
 
-              Welcome, {user.user_metadata?.full_name || user.email}
-            </button>
-          ) : (
-            <button
-              type="button"
-              className="login-link"
-              onClick={() => {
-                setMenuOpen(false);
-                setAuthOpen(true);
-              }}
-            >
-              Login / Register
-            </button>
-          )}
+    {user ? (
+      <button
+        type="button"
+        className="login-link"
+        onClick={() => {
+          setMenuOpen(false);
+          setDashboardOpen(true);
+        }}
+      >
+        Welcome, {user.user_metadata?.full_name || user.email}
+      </button>
+    ) : (
+      <button
+        type="button"
+        className="login-link"
+        onClick={() => {
+          setMenuOpen(false);
+          setAuthOpen(true);
+        }}
+      >
+        Login / Register
+      </button>
+    )}
 
-          <a className="post-job" href="#employers">
-            Post a Job <ArrowRight size={16} />
-          </a>
-        </nav>
-      </header>
+    <a className="post-job" href="#employers">
+      Post a Job <ArrowRight size={16} />
+    </a>
+  </nav>
+</header>
+
 
       <main>
         <section className="hero">
