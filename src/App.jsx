@@ -150,38 +150,46 @@ export default function App() {
             Tera<span className="brand-accent">Jobs</span>
             <small>BY TERASYNCTECH</small>
           </span>
-        </a>
+      
+<nav className={menuOpen ? "nav-links open" : "nav-links"}>
+  <a href="#jobs" onClick={() => setMenuOpen(false)}>
+    Find Jobs
+  </a>
 
-        <button
-          className="mobile-menu"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle menu"
-        >
-          {menuOpen ? <X /> : <Menu />}
-        </button>
+  <a href="#how" onClick={() => setMenuOpen(false)}>
+    How it works
+  </a>
 
-        <nav className={menuOpen ? "nav-links open" : "nav-links"}>
-          <a href="#jobs" onClick={() => setMenuOpen(false)}>
-            Find Jobs
-          </a>
+  <a href="#employers" onClick={() => setMenuOpen(false)}>
+    For Employers
+  </a>
 
-          <a href="#how" onClick={() => setMenuOpen(false)}>
-            How it works
-          </a>
+  {user ? (
+    <button
+      type="button"
+      className="login-link"
+      onClick={() => {
+        setMenuOpen(false);
+        setDashboardOpen(true);
+      }}
+    >
+      Welcome, {user.user_metadata?.full_name || user.email}
+    </button>
+  ) : (
+    <button
+      type="button"
+      className="login-link"
+      onClick={() => setAuthOpen(true)}
+    >
+      Login / Register
+    </button>
+  )}
 
-          <a href="#employers" onClick={() => setMenuOpen(false)}>
-            For Employers
-          </a>
+  <a className="post-job" href="#employers">
+    Post a Job <ArrowRight size={16} />
+  </a>
+</nav>
 
-          {user ? (
-            <button
-              type="button"
-              className="login-link"
-              onClick={() => {
-                setMenuOpen(false);
-                setDashboardOpen(true);
-              }}
-            >
               Welcome, {user.user_metadata?.full_name || user.email}
             </button>
           ) : (
