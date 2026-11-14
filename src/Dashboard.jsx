@@ -79,6 +79,9 @@ export default function Dashboard({ user, onClose }) {
             ? null
             : Number(profile.experience_years),
         skills: profile.skills
+  .split(",")
+  .map((skill) => skill.trim())
+  .filter(Boolean)
       })
       .eq("id", user.id);
 
