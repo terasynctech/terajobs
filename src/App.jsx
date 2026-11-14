@@ -69,8 +69,10 @@ const [authLoading, setAuthLoading] = useState(true);
     setNotice(`${data?.length || 0} live vacancies found.`);
   }
 
+
 {user ? (
   <button
+    type="button"
     className="login-link"
     onClick={() => setDashboardOpen(true)}
   >
@@ -78,12 +80,14 @@ const [authLoading, setAuthLoading] = useState(true);
   </button>
 ) : (
   <button
+    type="button"
     className="login-link"
     onClick={() => setAuthOpen(true)}
   >
     Login / Register
   </button>
 )}
+
 
         <a href="#how" onClick={() => setMenuOpen(false)}>How it works</a>
         <a href="#employers" onClick={() => setMenuOpen(false)}>For Employers</a>
