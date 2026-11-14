@@ -153,5 +153,11 @@ const [authLoading, setAuthLoading] = useState(true);
     }}
   />
 )}
+{dashboardOpen && user && (
+  <Dashboard
+    user={user}
+    onClose={() => setDashboardOpen(false)}
+  />
+)}      
   </div>;
 }
