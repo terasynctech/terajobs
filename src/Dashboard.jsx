@@ -147,13 +147,15 @@ export default function Dashboard({ user, onClose }) {
                 My Profile
               </button>
 
-              <button
-                style={styles.menuButton}
-                onClick={() => alert("Resume Upload coming soon")}
-              >
-                Upload Resume
-              </button>
-
+             <button
+  style={styles.menuButton}
+  onClick={() => {
+    setActivePage("resume");
+    setMessage("");
+  }}
+>
+  Upload Resume
+</button>
               <button
                 style={styles.menuButton}
                 onClick={() => alert("My Applications coming soon")}
