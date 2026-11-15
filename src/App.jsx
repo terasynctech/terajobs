@@ -85,7 +85,7 @@ export default function App() {
     });
 
     return () => subscription.unsubscribe();
-  }, []);
+
 return () => subscription.unsubscribe();
   }, []);
 
