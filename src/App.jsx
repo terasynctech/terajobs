@@ -2,6 +2,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import Auth from "./Auth";
 import Dashboard from "./Dashboard";
+import EmployerDashboard from "./EmployerDashboard";
 import {
   Search,
   MapPin,
