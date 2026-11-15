@@ -111,6 +111,8 @@ return () => subscription.unsubscribe();
       }
 
       setProfile(data);
+      console.log("Logged-in user:", user.email);
+console.log("Loaded profile role:", data.role);
     }
 
     loadUserProfile();
@@ -158,7 +160,7 @@ return () => subscription.unsubscribe();
         id: j.id,
         isLive: true,
         title: j.title,
-        company: j.company_name || "Verified employer",
+        company: j.company_name || "Verified employer",f
         city: j.city,
         salary:
           j.salary_min || j.salary_max
