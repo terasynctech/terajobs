@@ -407,7 +407,8 @@ async function loadSavedJobs() {
       </p>
     )}
   </>
-) : (
+
+) : activePage === "applications" ? (
   <>
     <h2 style={styles.heading}>My Applications</h2>
 
@@ -432,20 +433,15 @@ async function loadSavedJobs() {
           background: "#f8fafc"
         }}
       >
-        <h3 style={{ color: "#173f72", margin: "0 0 8px" }}>
+        <h3 style={{ color: "#173f72" }}>
           {application.jobs?.title || "Job title unavailable"}
         </h3>
 
-        <p>
-          <strong>Company:</strong>{" "}
-          {application.jobs?.company_name || "Not available"}
-        </p>
+        <p><strong>Company:</strong> {application.jobs?.company_name || "Not available"}</p>
 
         <p>
           <strong>Location:</strong>{" "}
-          {[application.jobs?.city, application.jobs?.state]
-            .filter(Boolean)
-            .join(", ") || "Not available"}
+          {[application.jobs?.city, application.jobs?.state].filter(Boolean).join(", ") || "Not available"}
         </p>
 
         <p>
@@ -455,9 +451,49 @@ async function loadSavedJobs() {
             : "Not available"}
         </p>
 
+        <p><strong>Status:</strong> {application.status || "Applied"}</p>
+      </div>
+    ))}
+  </>
+) : (
+  <>
+    <h2 style={styles.heading}>Saved Jobs</h2>
+
+    <p style={styles.welcome}>
+      Your bookmarked jobs are listed here.
+    </p>
+
+    {loading && <p>Loading saved jobs...</p>}
+
+    {!loading && savedJobs.length === 0 && (
+      <p>You have not saved any jobs yet.</p>
+    )}
+
+    {savedJobs.map((savedJob) => (
+      <div
+        key={savedJob.job_id}
+        style={{
+          padding: 16,
+          marginBottom: 14,
+          border: "1px solid #e2e8f0",
+          borderRadius: 10,
+          background: "#f8fafc"
+        }}
+      >
+        <h3 style={{ color: "#173f72" }}>
+          {savedJob.jobs?.title || "Job title unavailable"}
+        </h3>
+
         <p>
-          <strong>Status:</strong>{" "}
-          {application.status || "Applied"}
+          <strong>Company:</strong>{" "}
+          {savedJob.jobs?.company_name || "Not available"}
+        </p>
+
+        <p>
+          <strong>Location:</strong>{" "}
+          {[savedJob.jobs?.city, savedJob.jobs?.state]
+            .filter(Boolean)
+            .join(", ") || "Not available"}
         </p>
       </div>
     ))}
