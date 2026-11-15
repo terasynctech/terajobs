@@ -115,7 +115,7 @@ return () => subscription.unsubscribe();
     loadUserProfile();
   }, [user]);
 
-  const filteredJobs = useMemo(
+  
   const filteredJobs = useMemo(
     () =>
       jobs.filter(
