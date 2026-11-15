@@ -242,7 +242,8 @@ console.log("Loaded profile role:", data.role);
         className="login-link"
        onClick={() => {
   console.log("Welcome button clicked");
-  console.log("Current profile:", profile);
+  console.log("Current profile role:", profile?.role);
+console.log("Dashboard open:", dashboardOpen);
   setMenuOpen(false);
   setDashboardOpen(true);
 }}
