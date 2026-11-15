@@ -212,12 +212,15 @@ async function uploadResume(event) {
 >
   Upload Resume
 </button>
-              <button
-                style={styles.menuButton}
-                onClick={() => alert("My Applications coming soon")}
-              >
-                My Applications
-              </button>
+             <button
+  style={styles.menuButton}
+  onClick={() => {
+    setActivePage("applications");
+    setMessage("");
+  }}
+>
+  My Applications
+</button>
 
               <button
                 style={styles.menuButton}
