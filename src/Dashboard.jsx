@@ -172,9 +172,9 @@ async function loadApplications() {
 
   if (error) {
     setMessage("Could not load applications: " + error.message);
-    setApplications([]);
+    setSavedJobs([]);
   } else {
-    setApplications(data || []);
+    setSavedJobs(data || []);
   }
 
   setLoading(false);
