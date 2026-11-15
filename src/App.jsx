@@ -387,6 +387,11 @@ export default function App() {
 
                 <div className="job-card-bottom">
                   <b>{job.salary}</b>
+                  {job.isLive && (
+  <button type="button" onClick={() => saveJob(job)}>
+    Save Job
+  </button>
+)}
                   <button
                     onClick={() =>
                       setNotice(
