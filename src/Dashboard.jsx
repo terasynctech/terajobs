@@ -180,6 +180,36 @@ async function loadApplications() {
   setLoading(false);
 }
 
+async function loadSavedJobs() {
+  setLoading(true);
+  setMessage("");
+
+  const { data, error } = await supabase
+    .from("saved_jobs")
+    .select(`
+      job_id,
+      created_at,
+      jobs (
+        id,
+        title,
+        company_name,
+        city,
+        state
+      )
+    `)
+    .eq("candidate_id", user.id)
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    setMessage("Could not load saved jobs: " + error.message);
+    setApplications([]);
+  } else {
+    setApplications(data || []);
+  }
+
+  setLoading(false);
+}
+
   async function handleLogout() {
     const { error } = await supabase.auth.signOut();
 
