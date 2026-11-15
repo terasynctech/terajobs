@@ -293,9 +293,10 @@ async function loadSavedJobs() {
   Saved Jobs
 </button>
 
-            <button style={styles.logout} onClick={handleLogout}>
+                      <button style={styles.logout} onClick={handleLogout}>
               Logout
             </button>
+          </div>
           </>
         ) : (
           <>
