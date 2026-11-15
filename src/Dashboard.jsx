@@ -150,6 +150,36 @@ async function uploadResume(event) {
   event.target.value = "";
 }
 
+async function loadApplications() {
+  setLoading(true);
+  setMessage("");
+
+  const { data, error } = await supabase
+    .from("applications")
+    .select(`
+      id,
+      status,
+      applied_at,
+      jobs (
+        title,
+        company_name,
+        city,
+        state
+      )
+    `)
+    .eq("candidate_id", user.id)
+    .order("applied_at", { ascending: false });
+
+  if (error) {
+    setMessage("Could not load applications: " + error.message);
+    setApplications([]);
+  } else {
+    setApplications(data || []);
+  }
+
+  setLoading(false);
+}
+
   async function handleLogout() {
     const { error } = await supabase.auth.signOut();
 
