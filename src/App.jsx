@@ -86,7 +86,36 @@ export default function App() {
 
     return () => subscription.unsubscribe();
   }, []);
+return () => subscription.unsubscribe();
+  }, []);
 
+  // LOAD USER ROLE
+  useEffect(() => {
+    async function loadUserProfile() {
+      if (!user || !supabase) {
+        setProfile(null);
+        return;
+      }
+
+      const { data, error } = await supabase
+        .from("profiles")
+        .select("role")
+        .eq("id", user.id)
+        .single();
+
+      if (error) {
+        console.error("Could not load user role:", error.message);
+        setProfile(null);
+        return;
+      }
+
+      setProfile(data);
+    }
+
+    loadUserProfile();
+  }, [user]);
+
+  const filteredJobs = useMemo(
   const filteredJobs = useMemo(
     () =>
       jobs.filter(
