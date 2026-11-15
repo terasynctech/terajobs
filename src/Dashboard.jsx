@@ -253,13 +253,15 @@ async function loadApplications() {
   My Applications
 </button>
 
-              <button
-                style={styles.menuButton}
-                onClick={() => alert("Saved Jobs coming soon")}
-              >
-                Saved Jobs
-              </button>
-            </div>
+            <button
+  style={styles.menuButton}
+  onClick={() => {
+    setActivePage("saved");
+    loadSavedJobs();
+  }}
+>
+  Saved Jobs
+</button>
 
             <button style={styles.logout} onClick={handleLogout}>
               Logout
