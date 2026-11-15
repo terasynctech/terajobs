@@ -7,6 +7,7 @@ export default function Dashboard({ user, onClose }) {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 const [applications, setApplications] = useState([]);
+  const [savedJobs, setSavedJobs] = useState([]);
   const [profile, setProfile] = useState({
     full_name: "",
     phone: "",
