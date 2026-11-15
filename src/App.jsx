@@ -246,6 +246,8 @@ console.log("Loaded profile role:", data.role);
 console.log("Dashboard open:", dashboardOpen);
   setMenuOpen(false);
   setDashboardOpen(true);
+         console.log("Dashboard state requested to open");
+console.log("Profile role:", profile?.role);
 }}
       >
         Welcome, {user.user_metadata?.full_name || user.email}
