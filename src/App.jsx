@@ -536,12 +536,23 @@ return () => subscription.unsubscribe();
         />
       )}
 
-      {dashboardOpen && user && (
-        <Dashboard
-          user={user}
-          onClose={() => setDashboardOpen(false)}
-        />
-      )}
+    {dashboardOpen && user && (
+  profile ? (
+    profile.role === "employer" ? (
+      <EmployerDashboard
+        user={user}
+        onClose={() => setDashboardOpen(false)}
+      />
+    ) : (
+      <Dashboard
+        user={user}
+        onClose={() => setDashboardOpen(false)}
+      />
+    )
+  ) : (
+    <p>Loading your dashboard...</p>
+  )
+)}
     </div>
   );
 }
