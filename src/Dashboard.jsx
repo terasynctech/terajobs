@@ -345,7 +345,8 @@ async function loadApplications() {
       </button>
     </form>
   </>
-) : (
+
+) : activePage === "resume" ? (
   <>
     <h2 style={styles.heading}>Upload Your Resume</h2>
 
@@ -373,6 +374,61 @@ async function loadApplications() {
         {message}
       </p>
     )}
+  </>
+) : (
+  <>
+    <h2 style={styles.heading}>My Applications</h2>
+
+    <p style={styles.welcome}>
+      Track the jobs you have applied for.
+    </p>
+
+    {loading && <p>Loading applications...</p>}
+
+    {!loading && applications.length === 0 && (
+      <p>You have not applied for any jobs yet.</p>
+    )}
+
+    {applications.map((application) => (
+      <div
+        key={application.id}
+        style={{
+          padding: 16,
+          marginBottom: 14,
+          border: "1px solid #e2e8f0",
+          borderRadius: 10,
+          background: "#f8fafc"
+        }}
+      >
+        <h3 style={{ color: "#173f72", margin: "0 0 8px" }}>
+          {application.jobs?.title || "Job title unavailable"}
+        </h3>
+
+        <p>
+          <strong>Company:</strong>{" "}
+          {application.jobs?.company_name || "Not available"}
+        </p>
+
+        <p>
+          <strong>Location:</strong>{" "}
+          {[application.jobs?.city, application.jobs?.state]
+            .filter(Boolean)
+            .join(", ") || "Not available"}
+        </p>
+
+        <p>
+          <strong>Applied:</strong>{" "}
+          {application.applied_at
+            ? new Date(application.applied_at).toLocaleDateString("en-IN")
+            : "Not available"}
+        </p>
+
+        <p>
+          <strong>Status:</strong>{" "}
+          {application.status || "Applied"}
+        </p>
+      </div>
+    ))}
   </>
 )}
 
