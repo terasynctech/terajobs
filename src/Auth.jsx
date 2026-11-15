@@ -54,12 +54,13 @@ async function syncProfile(user) {
         const { data, error } = await supabase.auth.signUp({
           email: email.trim().toLowerCase(),
           password,
-          options: {
-            data: {
-              full_name: name.trim(),
-              phone: phone.trim()
-            }
-          }
+         options: {
+  emailRedirectTo: "https://terasynctech.github.io/terajobs/",
+  data: {
+    full_name: name.trim(),
+    phone: phone.trim()
+  }
+}
         });
 
         if (error) throw error;
