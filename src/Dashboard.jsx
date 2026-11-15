@@ -247,6 +247,7 @@ async function loadApplications() {
   onClick={() => {
     setActivePage("applications");
     setMessage("");
+    loadApplications();
   }}
 >
   My Applications
