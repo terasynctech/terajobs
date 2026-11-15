@@ -240,10 +240,12 @@ console.log("Loaded profile role:", data.role);
       <button
         type="button"
         className="login-link"
-        onClick={() => {
-          setMenuOpen(false);
-          setDashboardOpen(true);
-        }}
+       onClick={() => {
+  console.log("Welcome button clicked");
+  console.log("Current profile:", profile);
+  setMenuOpen(false);
+  setDashboardOpen(true);
+}}
       >
         Welcome, {user.user_metadata?.full_name || user.email}
       </button>
