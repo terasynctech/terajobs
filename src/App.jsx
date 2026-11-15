@@ -126,6 +126,7 @@ export default function App() {
     setJobs(
       (data || []).map((j) => ({
         id: j.id,
+        isLive: true,
         title: j.title,
         company: j.company_name || "Verified employer",
         city: j.city,
@@ -140,7 +141,36 @@ export default function App() {
 
     setNotice(`${data?.length || 0} live vacancies found.`);
   }
+  async function saveJob(job) {
+    if (!user) {
+      setNotice("Please login to save jobs.");
+      setAuthOpen(true);
+      return;
+    }
 
+    if (!job.isLive) {
+      setNotice("Only published live jobs can be saved.");
+      return;
+    }
+
+    const { error } = await supabase
+      .from("saved_jobs")
+      .insert({
+        candidate_id: user.id,
+        job_id: job.id
+      });
+
+    if (error) {
+      if (error.code === "23505") {
+        setNotice("You have already saved this job.");
+      } else {
+        setNotice("Could not save job: " + error.message);
+      }
+      return;
+    }
+
+    setNotice("Job saved successfully!");
+  }
   return (
     <div className="app-shell">
      
