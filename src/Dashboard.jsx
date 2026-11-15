@@ -6,7 +6,7 @@ export default function Dashboard({ user, onClose }) {
   const [activePage, setActivePage] = useState("menu");
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
-
+const [applications, setApplications] = useState([]);
   const [profile, setProfile] = useState({
     full_name: "",
     phone: "",
