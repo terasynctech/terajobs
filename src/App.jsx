@@ -160,7 +160,7 @@ console.log("Loaded profile role:", data.role);
         id: j.id,
         isLive: true,
         title: j.title,
-        company: j.company_name || "Verified employer",f
+        company: j.company_name || "Verified employer",
         city: j.city,
         salary:
           j.salary_min || j.salary_max
