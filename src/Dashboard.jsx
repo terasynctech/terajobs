@@ -310,7 +310,7 @@ async function loadSavedJobs() {
               ← Back to Dashboard
             </button>
 
-           
+          
 {activePage === "profile" ? (
   <>
     <h2 style={styles.heading}>My Profile</h2>
