@@ -203,8 +203,24 @@ console.log("Loaded profile role:", data.role);
 
     setNotice("Job saved successfully!");
   }
-  return (
-    <div className="app-shell">
+ return dashboardOpen && user ? (
+  profile ? (
+    profile.role === "employer" ? (
+      <EmployerDashboard
+        user={user}
+        onClose={() => setDashboardOpen(false)}
+      />
+    ) : (
+      <Dashboard
+        user={user}
+        onClose={() => setDashboardOpen(false)}
+      />
+    )
+  ) : (
+    <p>Loading your dashboard...</p>
+  )
+) : (
+  <div className="app-shell">
      
 <header className="topbar">
   <a className="brand" href="#">
@@ -543,23 +559,7 @@ console.log("Profile role:", profile?.role);
         />
       )}
 
-    {dashboardOpen && user && (
-  profile ? (
-    profile.role === "employer" ? (
-      <EmployerDashboard
-        user={user}
-        onClose={() => setDashboardOpen(false)}
-      />
-    ) : (
-      <Dashboard
-        user={user}
-        onClose={() => setDashboardOpen(false)}
-      />
-    )
-  ) : (
-    <p>Loading your dashboard...</p>
-  )
-)}
+
     </div>
   );
 }
