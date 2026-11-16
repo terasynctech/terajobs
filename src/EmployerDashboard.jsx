@@ -8,7 +8,7 @@ export default function EmployerDashboard({ user, onClose }) {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState("");
-
+const [myJobs, setMyJobs] = useState([]);
   const [job, setJob] = useState({
     title: "",
     company_name: "",
@@ -45,7 +45,24 @@ export default function EmployerDashboard({ user, onClose }) {
 
     loadEmployer();
   }, [user]);
+async function loadMyJobs() {
+  setLoading(true);
+  setMessage("");
 
+  const { data, error } = await supabase
+    .from("jobs")
+    .select("*")
+    .eq("employer_id", user.id)
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    setMessage("Could not load jobs: " + error.message);
+  } else {
+    setMyJobs(data || []);
+  }
+
+  setLoading(false);
+}
   function handleChange(event) {
     const { name, value } = event.target;
 
@@ -155,9 +172,15 @@ export default function EmployerDashboard({ user, onClose }) {
               Post a Job
             </button>
 
-            <button type="button" disabled>
-              Manage Jobs
-            </button>
+          <button
+  type="button"
+  onClick={() => {
+    setActivePage("manage");
+    loadMyJobs();
+  }}
+>
+  Manage Jobs
+</button>
 
             <button type="button" disabled>
               View Applicants
