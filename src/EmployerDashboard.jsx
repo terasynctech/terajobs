@@ -192,7 +192,7 @@ async function loadMyJobs() {
           </div>
         </>
       ) : activePage === "manage" ? (
-        <><
+        <>
           <button
             type="button"
             onClick={() => {
