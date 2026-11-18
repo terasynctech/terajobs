@@ -8,7 +8,8 @@ export default function EmployerDashboard({ user, onClose }) {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState("");
-const [myJobs, setMyJobs] = useState([]);
+  const [myJobs, setMyJobs] = useState([]);
+
   const [job, setJob] = useState({
     title: "",
     company_name: "",
@@ -26,11 +27,15 @@ const [myJobs, setMyJobs] = useState([]);
 
   useEffect(() => {
     async function loadEmployer() {
-      const { data } = await supabase
+      const { data, error } = await supabase
         .from("profiles")
         .select("full_name")
         .eq("id", user.id)
         .single();
+
+      if (error) {
+        setMessage("Could not load employer profile: " + error.message);
+      }
 
       if (data) {
         setCompanyName(data.full_name || "");
@@ -45,24 +50,26 @@ const [myJobs, setMyJobs] = useState([]);
 
     loadEmployer();
   }, [user]);
-async function loadMyJobs() {
-  setLoading(true);
-  setMessage("");
 
-  const { data, error } = await supabase
-    .from("jobs")
-    .select("*")
-    .eq("employer_id", user.id)
-    .order("created_at", { ascending: false });
+  async function loadMyJobs() {
+    setLoading(true);
+    setMessage("");
 
-  if (error) {
-    setMessage("Could not load jobs: " + error.message);
-  } else {
-    setMyJobs(data || []);
+    const { data, error } = await supabase
+      .from("jobs")
+      .select("*")
+      .eq("employer_id", user.id)
+      .order("created_at", { ascending: false });
+
+    if (error) {
+      setMessage("Could not load jobs: " + error.message);
+    } else {
+      setMyJobs(data || []);
+    }
+
+    setLoading(false);
   }
 
-  setLoading(false);
-}
   function handleChange(event) {
     const { name, value } = event.target;
 
@@ -172,15 +179,15 @@ async function loadMyJobs() {
               Post a Job
             </button>
 
-          <button
-  type="button"
-  onClick={() => {
-    setActivePage("manage");
-    loadMyJobs();
-  }}
->
-  Manage Jobs
-</button>
+            <button
+              type="button"
+              onClick={() => {
+                setActivePage("manage");
+                loadMyJobs();
+              }}
+            >
+              Manage Jobs
+            </button>
 
             <button type="button" disabled>
               View Applicants
@@ -204,8 +211,55 @@ async function loadMyJobs() {
             ← Back to Dashboard
           </button>
 
-          <h2 style={{ color: "#173f72" }}>Post a New Job</h2>
+          <h2 style={{ color: "#173f72" }}>Manage Jobs</h2>
+          <p>View the vacancies posted by your company.</p>
 
+          {loading && <p>Loading your jobs...</p>}
+
+          {message && <p style={{ color: "red" }}>{message}</p>}
+
+          {!loading && myJobs.length === 0 && (
+            <p>You have not posted any jobs yet.</p>
+          )}
+
+          {!loading && myJobs.map((item) => (
+            <div
+              key={item.id}
+              style={{
+                border: "1px solid #ddd",
+                borderRadius: "8px",
+                padding: "18px",
+                marginBottom: "15px"
+              }}
+            >
+              <h3 style={{ color: "#173f72" }}>{item.title}</h3>
+              <p><strong>Company:</strong> {item.company_name}</p>
+              <p><strong>Location:</strong> {item.city}, {item.state}</p>
+              <p><strong>Employment:</strong> {item.employment_type}</p>
+              <p><strong>Status:</strong> {item.status}</p>
+              <p>
+                <strong>Salary:</strong>{" "}
+                {item.salary_min || item.salary_max
+                  ? `₹${item.salary_min || 0} - ₹${item.salary_max || 0}`
+                  : "Not specified"}
+              </p>
+            </div>
+          ))}
+        </>
+      ) : (
+        <>
+          <button
+            type="button"
+            onClick={() => {
+              setActivePage("menu");
+              setMessage("");
+            }}
+            style={{ marginBottom: "20px" }}
+          >
+            ← Back to Dashboard
+          </button>
+
+          <h2 style={{ color: "#173f72" }}>Post a New Job</h2>
           <p>Enter the vacancy details below.</p>
 
           {loading ? (
