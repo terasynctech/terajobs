@@ -117,6 +117,48 @@ const { data, error } = await supabase.auth.signUp({
             : "Sign in to continue your job search."}
         </p>
 
+{mode === "register" && (
+  <div style={{ marginBottom: 20 }}>
+    <label style={styles.label}>Select account type</label>
+
+    <div style={{ display: "flex", gap: 10 }}>
+      <button
+        type="button"
+        onClick={() => setAccountRole("candidate")}
+        style={{
+          flex: 1,
+          padding: 12,
+          borderRadius: 8,
+          border: accountRole === "candidate" ? "2px solid #173f72" : "1px solid #ddd",
+          background: accountRole === "candidate" ? "#eaf2ff" : "#fff",
+          color: "#173f72",
+          fontWeight: 700,
+          cursor: "pointer"
+        }}
+      >
+        Candidate
+      </button>
+
+      <button
+        type="button"
+        onClick={() => setAccountRole("employer")}
+        style={{
+          flex: 1,
+          padding: 12,
+          borderRadius: 8,
+          border: accountRole === "employer" ? "2px solid #173f72" : "1px solid #ddd",
+          background: accountRole === "employer" ? "#eaf2ff" : "#fff",
+          color: "#173f72",
+          fontWeight: 700,
+          cursor: "pointer"
+        }}
+      >
+        Employer
+      </button>
+    </div>
+  </div>
+)}
+
         <div style={styles.tabs}>
           <button
             style={mode === "register" ? styles.activeTab : styles.tab}
