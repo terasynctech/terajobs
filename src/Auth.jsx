@@ -4,6 +4,7 @@ import { supabase } from "./supabase";
 
 export default function Auth({ onAuthSuccess, onClose }) {
   const [mode, setMode] = useState("register");
+  const [accountRole, setAccountRole] = useState("candidate");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
