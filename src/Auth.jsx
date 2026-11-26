@@ -52,17 +52,20 @@ async function syncProfile(user) {
 
     try {
       if (mode === "register") {
-        const { data, error } = await supabase.auth.signUp({
-          email: email.trim().toLowerCase(),
-          password,
-         options: {
-  emailRedirectTo: "https://terasynctech.github.io/terajobs/",
-  data: {
-    full_name: name.trim(),
-    phone: phone.trim()
+    
+const { data, error } = await supabase.auth.signUp({
+  email: email.trim().toLowerCase(),
+  password,
+  options: {
+    emailRedirectTo: "https://terasynctech.github.io/terajobs/",
+    data: {
+      full_name: name.trim(),
+      phone: phone.trim(),
+      account_role: accountRole
+    }
   }
-}
-        });
+});
+
 
         if (error) throw error;
 
