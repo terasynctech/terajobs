@@ -159,6 +159,7 @@ const { data, error } = await supabase.auth.signUp({
   </div>
 )}
 
+
         <div style={styles.tabs}>
           <button
             style={mode === "register" ? styles.activeTab : styles.tab}
