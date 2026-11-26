@@ -502,9 +502,17 @@ console.log("Profile role:", profile?.role);
             </p>
           </div>
 
-          <a href="mailto:careers@terasynctech.com?subject=TeraJobs%20Candidate%20Portal%20Enquiry">
-            Candidate portal coming soon <ArrowRight size={17} />
-          </a>
+        
+<a
+  href="#register"
+  onClick={(event) => {
+    event.preventDefault();
+    setAuthOpen(true);
+  }}
+>
+  Candidate Registration <ArrowRight size={17} />
+</a>
+
         </section>
 
         <section className="employer-section" id="employers">
