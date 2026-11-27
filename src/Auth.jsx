@@ -84,10 +84,30 @@ const { data, error } = await supabase.auth.signUp({
           password
         });
 
-        if (error) throw error;
+       if (error) throw error;
 
-        await syncProfile(data.user);
-        onAuthSuccess?.(data.user);
+// Check the registered account type
+const { data: profileData, error: profileError } = await supabase
+  .from("profiles")
+  .select("role")
+  .eq("id", data.user.id)
+  .single();
+
+if (profileError) throw profileError;
+
+// Verify that the account matches this portal
+if (portalRole && profileData.role !== portalRole) {
+  await supabase.auth.signOut();
+
+  throw new Error(
+    `This account is registered as ${profileData.role}. Please use the ${
+      profileData.role === "employer" ? "Employer" : "Candidate"
+    } Portal.`
+  );
+}
+
+await syncProfile(data.user);
+onAuthSuccess?.(data.user);
       }
     } catch (err) {
       setError(err.message || "Something went wrong. Please try again.");
