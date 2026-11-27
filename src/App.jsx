@@ -234,13 +234,33 @@ console.log("Loaded profile role:", data.role);
         margin: "0 auto",
         textAlign: "center"
       }}>
-        <h1 style={{ color: "#173f72" }}>TeraJobs</h1>
-        <h2 style={{ color: "#173f72" }}>{portalTitle}</h2>
-        <p>
-          {portal === "candidate"
-            ? "Find jobs, apply online and manage your career."
-            : "Post vacancies, find candidates and manage recruitment."}
-        </p>
+      
+<div style={{
+  background: "#173f72",
+  color: "#ffffff",
+  padding: "24px 20px",
+  borderRadius: "14px",
+  marginBottom: "22px",
+  boxShadow: "0 8px 24px rgba(23,63,114,0.15)"
+}}>
+  <h1 style={{ margin: 0, fontSize: "30px" }}>TeraJobs</h1>
+  <p style={{
+    margin: "6px 0 18px",
+    fontSize: "12px",
+    letterSpacing: "2px",
+    fontWeight: "bold"
+  }}>
+    BY TERASYNCTECH
+  </p>
+  <h2 style={{ margin: 0, fontSize: "23px" }}>
+    {portal === "candidate" ? "CANDIDATE PORTAL" : "EMPLOYER PORTAL"}
+  </h2>
+  <p style={{ margin: "12px 0 0", color: "#e2edfa" }}>
+    {portal === "candidate"
+      ? "Find jobs, apply online and manage your career."
+      : "Hire the right talent. Post vacancies and grow your business."}
+  </p>
+</div>
 
         <a
           href="https://terasynctech.github.io/terajobs/"
