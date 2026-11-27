@@ -68,6 +68,22 @@ export default function App() {
   const [authLoading, setAuthLoading] = useState(true);
   const [notice, setNotice] = useState("");
 
+const getPortalFromHash = () => {
+  if (window.location.hash === "#/candidate") return "candidate";
+  if (window.location.hash === "#/employer") return "employer";
+  return null;
+};
+
+const [portal, setPortal] = useState(getPortalFromHash);
+
+useEffect(() => {
+  const updatePortal = () => setPortal(getPortalFromHash());
+
+  window.addEventListener("hashchange", updatePortal);
+
+  return () => window.removeEventListener("hashchange", updatePortal);
+}, []);
+
   useEffect(() => {
     if (!supabase) {
       setAuthLoading(false);
