@@ -136,10 +136,12 @@ onAuthSuccess?.(data.user);
 )}
         )}
 
-        <div style={styles.brand}>
-          <span style={styles.logo}>T</span>
-          <span>Tera<span style={{ color: "#e77c35" }}>Jobs</span></span>
-        </div>
+        {!portalRole && (
+  <div style={styles.brand}>
+    <span style={styles.logo}>T</span>
+    <span>Tera<span style={{ color: "#e77c35" }}>Jobs</span></span>
+  </div>
+)}
 
         <p style={styles.tagline}>BY TERASYNCTECH</p>
 
