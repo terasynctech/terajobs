@@ -131,7 +131,9 @@ onAuthSuccess?.(data.user);
 }}>
       <div style={styles.card}>
         {onClose && (
-          <button style={styles.close} onClick={onClose}>×</button>
+          {!portalRole && (
+  <button style={styles.close} onClick={onClose}>×</button>
+)}
         )}
 
         <div style={styles.brand}>
