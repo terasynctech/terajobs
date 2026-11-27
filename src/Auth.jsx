@@ -2,9 +2,9 @@
 import React, { useState } from "react";
 import { supabase } from "./supabase";
 
-export default function Auth({ onAuthSuccess, onClose }) {
+export default function Auth({ onAuthSuccess, onClose, portalRole }) {
   const [mode, setMode] = useState("register");
-  const [accountRole, setAccountRole] = useState("candidate");
+  const [accountRole, setAccountRole] = useState(portalRole || "candidate");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
@@ -61,7 +61,7 @@ const { data, error } = await supabase.auth.signUp({
     data: {
       full_name: name.trim(),
       phone: phone.trim(),
-      account_role: accountRole
+      account_role: portalRole || accountRole
     }
   }
 });
@@ -117,7 +117,7 @@ const { data, error } = await supabase.auth.signUp({
             : "Sign in to continue your job search."}
         </p>
 
-{mode === "register" && (
+{mode === "register" && !portalRole && (
   <div style={{ marginBottom: 20 }}>
     <label style={styles.label}>Select account type</label>
 
