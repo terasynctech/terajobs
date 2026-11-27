@@ -588,9 +588,9 @@ console.log("Profile role:", profile?.role);
             </p>
           </div>
 
-          <a href="mailto:careers@terasynctech.com?subject=TeraJobs%20Employer%20Enquiry">
-            Employer access coming soon <ArrowRight size={17} />
-          </a>
+         <a href="#/employer">
+  Employer Portal <ArrowRight size={17} />
+</a>
         </section>
       </main>
 
