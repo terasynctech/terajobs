@@ -130,8 +130,7 @@ onAuthSuccess?.(data.user);
   } : {})
 }}>
       <div style={styles.card}>
-        {onClose && (
-          {!portalRole && (
+       {onClose && !portalRole && (
   <button style={styles.close} onClick={onClose}>×</button>
 )}
         )}
