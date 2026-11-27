@@ -257,11 +257,14 @@ console.log("Loaded profile role:", data.role);
               window.location.hash = "";
               setPortal(null);
             }}
-            onAuthSuccess={(loggedInUser) => {
-              setUser(loggedInUser);
-              setAuthOpen(false);
-              setDashboardOpen(true);
-            }}
+        onAuthSuccess={(loggedInUser) => {
+  window.location.hash = "";
+  setPortal(null);
+  setProfile(null);
+  setUser(loggedInUser);
+  setAuthOpen(false);
+  setDashboardOpen(true);
+}}
           />
         </div>
       </div>
