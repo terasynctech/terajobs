@@ -568,14 +568,8 @@ console.log("Profile role:", profile?.role);
           </div>
 
         
-<a
-  href="#register"
-  onClick={(event) => {
-    event.preventDefault();
-    setAuthOpen(true);
-  }}
->
-  Candidate Registration <ArrowRight size={17} />
+<a href="#/candidate">
+  Candidate Portal <ArrowRight size={17} />
 </a>
 
         </section>
