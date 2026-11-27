@@ -253,10 +253,10 @@ console.log("Loaded profile role:", data.role);
           <Auth
             key={portal}
             portalRole={portalRole}
-            onClose={() => {
-              window.location.hash = "";
-              setPortal(null);
-            }}
+           onClose={() => {
+  window.location.hash = "/";
+  setPortal(null);
+}}
         onAuthSuccess={(loggedInUser) => {
   window.location.hash = "";
   setPortal(null);
