@@ -75,7 +75,10 @@ const getPortalFromHash = () => {
 };
 
 const [portal, setPortal] = useState(getPortalFromHash);
+const portalRole = portal;
 
+const portalTitle =
+  portal === "candidate" ? "Candidate Portal" : "Employer Portal";
 useEffect(() => {
   const updatePortal = () => setPortal(getPortalFromHash());
 
@@ -219,6 +222,52 @@ console.log("Loaded profile role:", data.role);
 
     setNotice("Job saved successfully!");
   }
+  if (portal) {
+  return (
+    <div style={{
+      minHeight: "100vh",
+      background: "#f3f6fb",
+      padding: "40px 20px"
+    }}>
+      <div style={{
+        maxWidth: "520px",
+        margin: "0 auto",
+        textAlign: "center"
+      }}>
+        <h1 style={{ color: "#173f72" }}>TeraJobs</h1>
+        <h2 style={{ color: "#173f72" }}>{portalTitle}</h2>
+        <p>
+          {portal === "candidate"
+            ? "Find jobs, apply online and manage your career."
+            : "Post vacancies, find candidates and manage recruitment."}
+        </p>
+
+        <a
+          href="https://terasynctech.github.io/terajobs/"
+          style={{ color: "#1769aa" }}
+        >
+          ← Back to Main Website
+        </a>
+
+        <div style={{ marginTop: "30px" }}>
+          <Auth
+            key={portal}
+            portalRole={portalRole}
+            onClose={() => {
+              window.location.hash = "";
+              setPortal(null);
+            }}
+            onAuthSuccess={(loggedInUser) => {
+              setUser(loggedInUser);
+              setAuthOpen(false);
+              setDashboardOpen(true);
+            }}
+          />
+        </div>
+      </div>
+    </div>
+  );
+}
  return dashboardOpen && user ? (
   profile ? (
     profile.role === "employer" ? (
