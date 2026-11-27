@@ -117,7 +117,18 @@ onAuthSuccess?.(data.user);
   }
 
   return (
-    <div style={styles.overlay}>
+    <div style={{
+  ...styles.overlay,
+  ...(portalRole ? {
+    position: "relative",
+    inset: "auto",
+    zIndex: "auto",
+    background: "transparent",
+    minHeight: "auto",
+    padding: "0",
+    overflowY: "visible"
+  } : {})
+}}>
       <div style={styles.card}>
         {onClose && (
           <button style={styles.close} onClick={onClose}>×</button>
