@@ -130,12 +130,35 @@ onAuthSuccess?.(data.user);
 
         <p style={styles.tagline}>BY TERASYNCTECH</p>
 
-        <h2>{mode === "register" ? "Create your account" : "Welcome back"}</h2>
-        <p style={styles.subtitle}>
-          {mode === "register"
-            ? "Join TeraJobs and discover new career opportunities."
-            : "Sign in to continue your job search."}
-        </p>
+      
+<h2>
+  {portalRole === "employer"
+    ? mode === "register"
+      ? "Create Your Employer Account"
+      : "Welcome Back, Employer"
+    : portalRole === "candidate"
+      ? mode === "register"
+        ? "Create Your Candidate Account"
+        : "Welcome Back, Candidate"
+      : mode === "register"
+        ? "Create your account"
+        : "Welcome back"}
+</h2>
+
+<p style={styles.subtitle}>
+  {portalRole === "employer"
+    ? mode === "register"
+      ? "Join TeraJobs to post vacancies and find the right talent for your business."
+      : "Sign in to manage your vacancies and recruitment activities."
+    : portalRole === "candidate"
+      ? mode === "register"
+        ? "Create your account and discover new career opportunities."
+        : "Sign in to find jobs and manage your applications."
+      : mode === "register"
+        ? "Join TeraJobs and discover new career opportunities."
+        : "Sign in to continue your job search."}
+</p>
+
 
 {mode === "register" && !portalRole && (
   <div style={{ marginBottom: 20 }}>
