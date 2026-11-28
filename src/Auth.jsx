@@ -133,7 +133,7 @@ onAuthSuccess?.(data.user);
        {onClose && !portalRole && (
   <button style={styles.close} onClick={onClose}>×</button>
 )}
-        )}
+      
 
         {!portalRole && (
   <div style={styles.brand}>
